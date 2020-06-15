@@ -20,6 +20,6 @@ export default route().get(async (req, res) => {
       input: {},
     },
   });
-  const { id, code } = data.createAuth;
-  res.status(200).json({ id, code });
+  const { id } = data.createAuth;
+  res.status(200).json({ id });
 });
