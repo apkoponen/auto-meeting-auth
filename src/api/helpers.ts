@@ -34,7 +34,7 @@ export function route(): Router {
       return methodCallbacks[req.method](req, res);
     }
     res.setHeader("Allow", Object.keys(methodCallbacks));
-    res.status(405).end({ error: `Method ${req.method} Not Allowed` });
+    res.status(405).json({ error: `Method ${req.method} Not Allowed` });
   };
   const methods = {
     delete: createRegisterMethodFunction(
