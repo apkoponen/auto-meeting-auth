@@ -11,7 +11,7 @@ mutation createAuth($input: CreateAuthInput!) {
 }
 `);
 
-export default route().get(async (req, res) => {
+export default route().post(async (req, res) => {
   const client = getAwsClient();
   await client.hydrated();
   const { data } = await client.mutate<{ createAuth: Auth }>({
