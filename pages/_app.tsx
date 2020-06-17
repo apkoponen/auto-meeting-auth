@@ -8,7 +8,7 @@ export default class MyApp extends App {
     return (
       <>
         <Head>
-          <title>Authorize Auto Open Meeting</title>
+          <title>Download Auto Meeting</title>
           <link rel="stylesheet" href="https://rsms.me/inter/inter.css" />
           <meta name="robots" content="noindex" />
         </Head>
