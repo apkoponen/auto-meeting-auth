@@ -35,7 +35,7 @@ export default route().get(async (req, res) => {
       qs.stringify({
         code: data.getAuth.code,
         client_id: process.env.GOOGLE_CLIENT_ID,
-        client_secret: process.env.GOOGLE_CLIENT_ID,
+        client_secret: process.env.GOOGLE_CLIENT_SECRET,
         redirect_uri: process.env.GOOGLE_REDIRECT_URI,
         grant_type: "authorization_code",
       }),
