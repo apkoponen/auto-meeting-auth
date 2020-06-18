@@ -13,6 +13,14 @@ query getAuth($id: ID!) {
 }
 `);
 
+const deleteMutation = gql(`
+mutation deleteAuth($input: DeleteAuthInput!) {
+  deleteAuth(input: $input) {
+    id
+  }
+}
+`);
+
 export default route().get(async (req, res) => {
   const { id } = req.query;
 
@@ -29,7 +37,7 @@ export default route().get(async (req, res) => {
     },
   });
 
-  if (!data.getAuth.id) {
+  if (!data.getAuth || !data.getAuth.id) {
     return res.status(404).end();
   }
 
@@ -37,20 +45,32 @@ export default route().get(async (req, res) => {
     return res.status(204).end();
   }
 
-  const response = await Axios.post(
-    "https://oauth2.googleapis.com/token",
-    qs.stringify({
-      code: data.getAuth.code,
-      client_id: process.env.GOOGLE_CLIENT_ID,
-      client_secret: process.env.GOOGLE_CLIENT_SECRET,
-      redirect_uri: process.env.GOOGLE_REDIRECT_URI,
-      grant_type: "authorization_code",
-    }),
-    {
-      headers: {
-        "Content-Type": "application/x-www-form-urlencoded",
+  try {
+    const response = await Axios.post(
+      "https://oauth2.googleapis.com/token",
+      qs.stringify({
+        code: data.getAuth.code,
+        client_id: process.env.GOOGLE_CLIENT_ID,
+        client_secret: process.env.GOOGLE_CLIENT_SECRET,
+        redirect_uri: process.env.GOOGLE_REDIRECT_URI,
+        grant_type: "authorization_code",
+      }),
+      {
+        headers: {
+          "Content-Type": "application/x-www-form-urlencoded",
+        },
+      }
+    );
+    res.status(200).json(response.data);
+    await client.mutate({
+      mutation: deleteMutation,
+      variables: {
+        input: {
+          id,
+        },
       },
-    }
-  );
-  res.status(200).json(response.data);
+    });
+  } catch (e) {
+    res.status(500).end();
+  }
 });
