@@ -29,25 +29,28 @@ export default route().get(async (req, res) => {
     },
   });
 
-  if (data.getAuth.code) {
-    const response = await Axios.post(
-      "https://oauth2.googleapis.com/token",
-      qs.stringify({
-        code: data.getAuth.code,
-        client_id: process.env.GOOGLE_CLIENT_ID,
-        client_secret: process.env.GOOGLE_CLIENT_SECRET,
-        redirect_uri: process.env.GOOGLE_REDIRECT_URI,
-        grant_type: "authorization_code",
-      }),
-      {
-        headers: {
-          "Content-Type": "application/x-www-form-urlencoded",
-        },
-      }
-    );
+  if (!data.getAuth.id) {
+    return res.status(404).end();
+  }
 
-    res.status(200).json(response.data);
-  } else {
+  if (!data.getAuth.code) {
     return res.status(204).end();
   }
+
+  const response = await Axios.post(
+    "https://oauth2.googleapis.com/token",
+    qs.stringify({
+      code: data.getAuth.code,
+      client_id: process.env.GOOGLE_CLIENT_ID,
+      client_secret: process.env.GOOGLE_CLIENT_SECRET,
+      redirect_uri: process.env.GOOGLE_REDIRECT_URI,
+      grant_type: "authorization_code",
+    }),
+    {
+      headers: {
+        "Content-Type": "application/x-www-form-urlencoded",
+      },
+    }
+  );
+  res.status(200).json(response.data);
 });
