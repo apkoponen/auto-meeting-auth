@@ -12,7 +12,8 @@ export default route().get(async (req, res) => {
     Location:
       "https://accounts.google.com/o/oauth2/v2/auth?" +
       qs.stringify({
-        scope: "https://www.googleapis.com/auth/calendar.events.readonly",
+        scope:
+          "https://www.googleapis.com/auth/calendar.events.readonly https://www.googleapis.com/auth/calendar.readonly",
         access_type: "offline",
         include_granted_scopes: "true",
         response_type: "code",
