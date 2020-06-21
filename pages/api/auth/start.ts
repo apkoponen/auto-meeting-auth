@@ -17,6 +17,7 @@ export default route().get(async (req, res) => {
         access_type: "offline",
         include_granted_scopes: "true",
         response_type: "code",
+        prompt: "consent",
         state,
         redirect_uri: process.env.GOOGLE_REDIRECT_URI,
         client_id: process.env.GOOGLE_CLIENT_ID,
