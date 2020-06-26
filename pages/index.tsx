@@ -64,7 +64,7 @@ const Home: FunctionComponent = () => {
             <h1 className="my-8 text-2xl md:text-3xl lg:text-5xl font-black text-gray-900 leading-tight">
               Tired of Joining Remote Meetings Late?
             </h1>
-            <p className="leading-normal text-teal-100 text-base text-medium md:text-xl lg:text-2xl mb-8 max-w-3xl mx-auto">
+            <p className="leading-normal text-gray-100 text-base text-medium md:text-xl lg:text-2xl mb-8 max-w-3xl mx-auto">
               Auto Meeting opens Teams, Meet, and Zoom links in your Google
               calendar events just in time, so you'll{" "}
               <span className="underline">never again</span> forget to join.
