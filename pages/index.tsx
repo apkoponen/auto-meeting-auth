@@ -8,7 +8,15 @@ const Home: FunctionComponent = () => {
           __html: `     
     .gradient {
       background: #77a1d3;
-      background: radial-gradient(circle at bottom left, #77A1D2 20%, #79CBCA 90%, #E684AE 100%);
+      background: radial-gradient(circle at bottom left, #77A1D2, #79CBCA, #E684AE);    
+      animation: gradientAnimation 30s ease infinite;
+      background-size: 150% 150%;
+    }
+
+    @keyframes gradientAnimation {
+      0%{ background-position: 0% 50% }
+      50%{ background-position: 100% 50% }
+      100%{ background-position: 0% 50% }
     }
     
     .browser-mockup {
