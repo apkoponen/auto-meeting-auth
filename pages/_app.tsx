@@ -10,7 +10,6 @@ export default class MyApp extends App {
         <Head>
           <title>Download Auto Meeting</title>
           <link rel="stylesheet" href="https://rsms.me/inter/inter.css" />
-          <meta name="robots" content="noindex" />
         </Head>
         <Component {...pageProps} />
       </>
