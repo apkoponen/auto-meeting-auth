@@ -70,9 +70,12 @@ const Home: FunctionComponent = () => {
               calendar events just in time, so you'll{" "}
               <span className="underline">never again</span> forget to join.
             </p>
-            <button className="mx-auto transition duration-300 ease-in-out lg:mx-0  bg-white text-gray-800 font-extrabold rounded my-2 md:my-6 py-4 px-8 shadow-lg hover:shadow-md hover:text-teal-700 w-56">
+            <a
+              className="mx-auto transition duration-300 ease-in-out lg:mx-0  bg-white text-gray-800 font-extrabold rounded my-2 md:my-6 py-4 px-8 shadow-lg hover:shadow-md hover:text-teal-700 w-56"
+              href="https://github.com/apkoponen/auto-meeting"
+            >
               Download for Free
-            </button>
+            </a>
           </div>
 
           <div className="flex items-center w-full mx-auto content-end">
